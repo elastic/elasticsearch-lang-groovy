@@ -19,7 +19,6 @@
 
 package org.elasticsearch.plugin.groovy;
 
-import org.elasticsearch.common.inject.Module;
 import org.elasticsearch.plugins.AbstractPlugin;
 import org.elasticsearch.script.ScriptModule;
 import org.elasticsearch.script.groovy.GroovyScriptEngineService;
@@ -39,10 +38,7 @@ public class GroovyPlugin extends AbstractPlugin {
         return "Groovy plugin allowing to add groovy scripting support";
     }
 
-    @Override
-    public void processModule(Module module) {
-        if (module instanceof ScriptModule) {
-            ((ScriptModule) module).addScriptEngine(GroovyScriptEngineService.class);
-        }
+    public void onModule(ScriptModule module) {
+        module.addScriptEngine(GroovyScriptEngineService.class);
     }
 }

@@ -33,12 +33,12 @@ import org.elasticsearch.action.admin.cluster.node.stats.NodesStatsResponse
 import org.elasticsearch.action.admin.cluster.state.ClusterStateRequest
 import org.elasticsearch.action.admin.cluster.state.ClusterStateResponse
 import org.elasticsearch.client.ClusterAdminClient
-import org.elasticsearch.client.action.admin.cluster.health.ClusterHealthRequestBuilder
-import org.elasticsearch.client.action.admin.cluster.node.info.NodesInfoRequestBuilder
-import org.elasticsearch.client.action.admin.cluster.node.restart.NodesRestartRequestBuilder
-import org.elasticsearch.client.action.admin.cluster.node.shutdown.NodesShutdownRequestBuilder
-import org.elasticsearch.client.action.admin.cluster.node.stats.NodesStatsRequestBuilder
-import org.elasticsearch.client.action.admin.cluster.state.ClusterStateRequestBuilder
+import org.elasticsearch.action.admin.cluster.health.ClusterHealthRequestBuilder
+import org.elasticsearch.action.admin.cluster.node.info.NodesInfoRequestBuilder
+import org.elasticsearch.action.admin.cluster.node.restart.NodesRestartRequestBuilder
+import org.elasticsearch.action.admin.cluster.node.shutdown.NodesShutdownRequestBuilder
+import org.elasticsearch.action.admin.cluster.node.stats.NodesStatsRequestBuilder
+import org.elasticsearch.action.admin.cluster.state.ClusterStateRequestBuilder
 import org.elasticsearch.client.internal.InternalClient
 import org.elasticsearch.groovy.client.action.GActionFuture
 

@@ -8,7 +8,7 @@ In order to install the plugin, simply run: `bin/plugin -install elasticsearch/e
     ----------------------------------------
     | Groovy Plugin     | ElasticSearch    |
     ----------------------------------------
-    | master            | 0.19 -> master   |
+    | master            | 0.20 -> master   |
     ----------------------------------------
     | 1.1.0             | 0.19 -> master   |
     ----------------------------------------

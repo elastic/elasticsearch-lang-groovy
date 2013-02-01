@@ -66,6 +66,7 @@ import org.elasticsearch.action.admin.indices.stats.IndicesStatsRequestBuilder
 import org.elasticsearch.action.admin.indices.status.IndicesStatusRequestBuilder
 import org.elasticsearch.action.admin.indices.template.delete.DeleteIndexTemplateRequestBuilder
 import org.elasticsearch.action.admin.indices.template.put.PutIndexTemplateRequestBuilder
+import org.elasticsearch.action.admin.indices.warmer.put.PutWarmerRequestBuilder
 import org.elasticsearch.client.internal.InternalClient
 import org.elasticsearch.groovy.client.action.GActionFuture
 import org.elasticsearch.groovy.common.xcontent.GXContentBuilder
@@ -479,5 +480,10 @@ class GIndicesAdminClient {
         GActionFuture<DeleteIndexTemplateResponse> future = new GActionFuture<DeleteIndexTemplateResponse>(internalClient.threadPool(), request)
         indicesAdminClient.deleteTemplate(request, future)
         return future
+    }
+
+
+    PutWarmerRequestBuilder preparePutWarmer(String name){
+        indicesAdminClient.preparePutWarmer(name)
     }
 }

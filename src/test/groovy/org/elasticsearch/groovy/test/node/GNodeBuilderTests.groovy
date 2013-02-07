@@ -21,13 +21,16 @@ package org.elasticsearch.groovy.test.node
 
 import org.elasticsearch.groovy.node.GNode
 import org.elasticsearch.groovy.node.GNodeBuilder
-import static org.elasticsearch.groovy.node.GNodeBuilder.*
+import org.testng.annotations.Test
+
+import static org.elasticsearch.groovy.node.GNodeBuilder.nodeBuilder
 
 /**
  *
  */
-class GNodeBuilderTests extends GroovyTestCase {
+class GNodeBuilderTests {
 
+    @Test
     void testGNodeBuilder() {
         GNodeBuilder nodeBuilder = nodeBuilder()
         nodeBuilder.settings {

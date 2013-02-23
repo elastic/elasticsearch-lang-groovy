@@ -22,7 +22,7 @@ package org.elasticsearch.script.groovy;
 import groovy.lang.Binding;
 import groovy.lang.GroovyClassLoader;
 import groovy.lang.Script;
-import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.AtomicReaderContext;
 import org.apache.lucene.search.Scorer;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.common.component.AbstractComponent;
@@ -170,8 +170,8 @@ public class GroovyScriptEngineService extends AbstractComponent implements Scri
         }
 
         @Override
-        public void setNextReader(IndexReader reader) {
-            lookup.setNextReader(reader);
+        public void setNextReader(AtomicReaderContext context) {
+            lookup.setNextReader(context);
         }
 
         @Override

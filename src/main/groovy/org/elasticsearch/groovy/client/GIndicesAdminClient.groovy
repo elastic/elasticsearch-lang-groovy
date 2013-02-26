@@ -53,9 +53,9 @@ import org.elasticsearch.action.admin.indices.refresh.RefreshResponse
 import org.elasticsearch.action.admin.indices.settings.UpdateSettingsRequest
 import org.elasticsearch.action.admin.indices.settings.UpdateSettingsRequestBuilder
 import org.elasticsearch.action.admin.indices.settings.UpdateSettingsResponse
-import org.elasticsearch.action.admin.indices.stats.IndicesStats
 import org.elasticsearch.action.admin.indices.stats.IndicesStatsRequest
 import org.elasticsearch.action.admin.indices.stats.IndicesStatsRequestBuilder
+import org.elasticsearch.action.admin.indices.stats.IndicesStatsResponse
 import org.elasticsearch.action.admin.indices.status.IndicesStatusRequest
 import org.elasticsearch.action.admin.indices.status.IndicesStatusRequestBuilder
 import org.elasticsearch.action.admin.indices.status.IndicesStatusResponse
@@ -172,7 +172,7 @@ class GIndicesAdminClient {
         indicesAdminClient.prepareStats(indices)
     }
 
-    GActionFuture<IndicesStats> stats(Closure c) {
+    GActionFuture<IndicesStatsResponse> stats(Closure c) {
         IndicesStatsRequest request = new IndicesStatsRequest()
         c.setDelegate request
         c.resolveStrategy = gClient.resolveStrategy
@@ -180,13 +180,13 @@ class GIndicesAdminClient {
         stats(request)
     }
 
-    GActionFuture<IndicesStats> stats(IndicesStatsRequest request) {
-        GActionFuture<IndicesStats> future = new GActionFuture<IndicesStats>(internalClient.threadPool(), request)
+    GActionFuture<IndicesStatsResponse> stats(IndicesStatsRequest request) {
+        GActionFuture<IndicesStatsResponse> future = new GActionFuture<IndicesStatsResponse>(internalClient.threadPool(), request)
         indicesAdminClient.stats(request, future)
         return future
     }
 
-    void stats(IndicesStatsRequest request, ActionListener<IndicesStats> listener) {
+    void stats(IndicesStatsRequest request, ActionListener<IndicesStatsResponse> listener) {
         indicesAdminClient.stats(request, listener)
     }
 

@@ -21,51 +21,56 @@ package org.elasticsearch.groovy.client
 
 import org.elasticsearch.action.ActionListener
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesRequest
+import org.elasticsearch.action.admin.indices.alias.IndicesAliasesRequestBuilder
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesResponse
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequest
+import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequestBuilder
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse
 import org.elasticsearch.action.admin.indices.cache.clear.ClearIndicesCacheRequest
+import org.elasticsearch.action.admin.indices.cache.clear.ClearIndicesCacheRequestBuilder
 import org.elasticsearch.action.admin.indices.cache.clear.ClearIndicesCacheResponse
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest
+import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequestBuilder
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse
 import org.elasticsearch.action.admin.indices.flush.FlushRequest
+import org.elasticsearch.action.admin.indices.flush.FlushRequestBuilder
 import org.elasticsearch.action.admin.indices.flush.FlushResponse
 import org.elasticsearch.action.admin.indices.gateway.snapshot.GatewaySnapshotRequest
+import org.elasticsearch.action.admin.indices.gateway.snapshot.GatewaySnapshotRequestBuilder
 import org.elasticsearch.action.admin.indices.gateway.snapshot.GatewaySnapshotResponse
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest
+import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequestBuilder
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse
 import org.elasticsearch.action.admin.indices.optimize.OptimizeRequest
+import org.elasticsearch.action.admin.indices.optimize.OptimizeRequestBuilder
 import org.elasticsearch.action.admin.indices.optimize.OptimizeResponse
 import org.elasticsearch.action.admin.indices.refresh.RefreshRequest
+import org.elasticsearch.action.admin.indices.refresh.RefreshRequestBuilder
 import org.elasticsearch.action.admin.indices.refresh.RefreshResponse
 import org.elasticsearch.action.admin.indices.settings.UpdateSettingsRequest
+import org.elasticsearch.action.admin.indices.settings.UpdateSettingsRequestBuilder
 import org.elasticsearch.action.admin.indices.settings.UpdateSettingsResponse
-import org.elasticsearch.action.admin.indices.stats.IndicesStats
 import org.elasticsearch.action.admin.indices.stats.IndicesStatsRequest
+import org.elasticsearch.action.admin.indices.stats.IndicesStatsRequestBuilder
+import org.elasticsearch.action.admin.indices.stats.IndicesStatsResponse
 import org.elasticsearch.action.admin.indices.status.IndicesStatusRequest
+import org.elasticsearch.action.admin.indices.status.IndicesStatusRequestBuilder
 import org.elasticsearch.action.admin.indices.status.IndicesStatusResponse
 import org.elasticsearch.action.admin.indices.template.delete.DeleteIndexTemplateRequest
+import org.elasticsearch.action.admin.indices.template.delete.DeleteIndexTemplateRequestBuilder
 import org.elasticsearch.action.admin.indices.template.delete.DeleteIndexTemplateResponse
 import org.elasticsearch.action.admin.indices.template.put.PutIndexTemplateRequest
-import org.elasticsearch.action.admin.indices.template.put.PutIndexTemplateResponse
-import org.elasticsearch.client.IndicesAdminClient
-import org.elasticsearch.action.admin.indices.alias.IndicesAliasesRequestBuilder
-import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequestBuilder
-import org.elasticsearch.action.admin.indices.cache.clear.ClearIndicesCacheRequestBuilder
-import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder
-import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequestBuilder
-import org.elasticsearch.action.admin.indices.flush.FlushRequestBuilder
-import org.elasticsearch.action.admin.indices.gateway.snapshot.GatewaySnapshotRequestBuilder
-import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequestBuilder
-import org.elasticsearch.action.admin.indices.optimize.OptimizeRequestBuilder
-import org.elasticsearch.action.admin.indices.refresh.RefreshRequestBuilder
-import org.elasticsearch.action.admin.indices.settings.UpdateSettingsRequestBuilder
-import org.elasticsearch.action.admin.indices.stats.IndicesStatsRequestBuilder
-import org.elasticsearch.action.admin.indices.status.IndicesStatusRequestBuilder
-import org.elasticsearch.action.admin.indices.template.delete.DeleteIndexTemplateRequestBuilder
 import org.elasticsearch.action.admin.indices.template.put.PutIndexTemplateRequestBuilder
+import org.elasticsearch.action.admin.indices.template.put.PutIndexTemplateResponse
+import org.elasticsearch.action.admin.indices.warmer.delete.DeleteWarmerRequest
+import org.elasticsearch.action.admin.indices.warmer.delete.DeleteWarmerResponse
+import org.elasticsearch.action.admin.indices.warmer.put.PutWarmerRequest
+import org.elasticsearch.action.admin.indices.warmer.put.PutWarmerRequestBuilder
+import org.elasticsearch.action.admin.indices.warmer.put.PutWarmerResponse
+import org.elasticsearch.client.IndicesAdminClient
 import org.elasticsearch.client.internal.InternalClient
 import org.elasticsearch.groovy.client.action.GActionFuture
 import org.elasticsearch.groovy.common.xcontent.GXContentBuilder
@@ -76,51 +81,51 @@ import org.elasticsearch.groovy.common.xcontent.GXContentBuilder
 class GIndicesAdminClient {
 
     static {
-        CreateIndexRequest.metaClass.setSettings = {Closure c ->
+        CreateIndexRequest.metaClass.setSettings = { Closure c ->
             delegate.settings(new GXContentBuilder().buildAsString(c))
         }
-        CreateIndexRequest.metaClass.settings = {Closure c ->
+        CreateIndexRequest.metaClass.settings = { Closure c ->
             delegate.settings(new GXContentBuilder().buildAsString(c))
         }
-        CreateIndexRequest.metaClass.mapping = {String type, Closure c ->
+        CreateIndexRequest.metaClass.mapping = { String type, Closure c ->
             delegate.mapping(type, new GXContentBuilder().buildAsString(c))
         }
-        CreateIndexRequest.metaClass.setMapping = {String type, Closure c ->
+        CreateIndexRequest.metaClass.setMapping = { String type, Closure c ->
             delegate.mapping(type, new GXContentBuilder().buildAsString(c))
         }
-        CreateIndexRequestBuilder.metaClass.setSettings = {Closure c ->
+        CreateIndexRequestBuilder.metaClass.setSettings = { Closure c ->
             delegate.setSettings(new GXContentBuilder().buildAsString(c))
         }
-        CreateIndexRequestBuilder.metaClass.settings = {Closure c ->
+        CreateIndexRequestBuilder.metaClass.settings = { Closure c ->
             delegate.setSettings(new GXContentBuilder().buildAsString(c))
         }
-        CreateIndexRequestBuilder.metaClass.addMapping = {String type, Closure c ->
+        CreateIndexRequestBuilder.metaClass.addMapping = { String type, Closure c ->
             delegate.addMapping(type, new GXContentBuilder().buildAsString(c))
         }
 
-        PutMappingRequest.metaClass.setSource = {Closure c ->
+        PutMappingRequest.metaClass.setSource = { Closure c ->
             delegate.source(new GXContentBuilder().buildAsString(c))
         }
-        PutMappingRequest.metaClass.source = {Closure c ->
+        PutMappingRequest.metaClass.source = { Closure c ->
             delegate.source(new GXContentBuilder().buildAsString(c))
         }
-        PutMappingRequestBuilder.metaClass.setSource = {Closure c ->
+        PutMappingRequestBuilder.metaClass.setSource = { Closure c ->
             delegate.setSource(new GXContentBuilder().buildAsString(c))
         }
-        PutMappingRequestBuilder.metaClass.source = {Closure c ->
+        PutMappingRequestBuilder.metaClass.source = { Closure c ->
             delegate.setSource(new GXContentBuilder().buildAsString(c))
         }
 
-        UpdateSettingsRequest.metaClass.setSettings = {Closure c ->
+        UpdateSettingsRequest.metaClass.setSettings = { Closure c ->
             delegate.settings(new GXContentBuilder().buildAsString(c))
         }
-        UpdateSettingsRequest.metaClass.settings = {Closure c ->
+        UpdateSettingsRequest.metaClass.settings = { Closure c ->
             delegate.settings(new GXContentBuilder().buildAsString(c))
         }
-        UpdateSettingsRequestBuilder.metaClass.setSettings = {Closure c ->
+        UpdateSettingsRequestBuilder.metaClass.setSettings = { Closure c ->
             delegate.setSettings(new GXContentBuilder().buildAsString(c))
         }
-        UpdateSettingsRequestBuilder.metaClass.settings = {Closure c ->
+        UpdateSettingsRequestBuilder.metaClass.settings = { Closure c ->
             delegate.setSettings(new GXContentBuilder().buildAsString(c))
         }
     }
@@ -167,7 +172,7 @@ class GIndicesAdminClient {
         indicesAdminClient.prepareStats(indices)
     }
 
-    GActionFuture<IndicesStats> stats(Closure c) {
+    GActionFuture<IndicesStatsResponse> stats(Closure c) {
         IndicesStatsRequest request = new IndicesStatsRequest()
         c.setDelegate request
         c.resolveStrategy = gClient.resolveStrategy
@@ -175,13 +180,13 @@ class GIndicesAdminClient {
         stats(request)
     }
 
-    GActionFuture<IndicesStats> stats(IndicesStatsRequest request) {
-        GActionFuture<IndicesStats> future = new GActionFuture<IndicesStats>(internalClient.threadPool(), request)
+    GActionFuture<IndicesStatsResponse> stats(IndicesStatsRequest request) {
+        GActionFuture<IndicesStatsResponse> future = new GActionFuture<IndicesStatsResponse>(internalClient.threadPool(), request)
         indicesAdminClient.stats(request, future)
         return future
     }
 
-    void stats(IndicesStatsRequest request, ActionListener<IndicesStats> listener) {
+    void stats(IndicesStatsRequest request, ActionListener<IndicesStatsResponse> listener) {
         indicesAdminClient.stats(request, listener)
     }
 
@@ -478,6 +483,44 @@ class GIndicesAdminClient {
     GActionFuture<DeleteIndexTemplateResponse> deleteTemplate(DeleteIndexTemplateRequest request) {
         GActionFuture<DeleteIndexTemplateResponse> future = new GActionFuture<DeleteIndexTemplateResponse>(internalClient.threadPool(), request)
         indicesAdminClient.deleteTemplate(request, future)
+        return future
+    }
+
+    // WARMER
+
+    PutWarmerRequestBuilder preparePutWarmer(String name) {
+        indicesAdminClient.preparePutWarmer(name)
+    }
+
+    GActionFuture<PutWarmerResponse> putWarmer(Closure c) {
+        PutWarmerRequest request = new PutWarmerRequest()
+        c.setDelegate request
+        c.resolveStrategy = gClient.resolveStrategy
+        c.call()
+        putWarmer(request)
+    }
+
+    GActionFuture<PutWarmerResponse> putWarmer(PutWarmerRequest request) {
+        GActionFuture<PutWarmerResponse> future = new GActionFuture<PutWarmerResponse>(internalClient.threadPool(), request)
+        indicesAdminClient.putWarmer(request, future)
+        return future
+    }
+
+    PutWarmerRequestBuilder prepareDeleteWarmer() {
+        indicesAdminClient.prepareDeleteWarmer()
+    }
+
+    GActionFuture<DeleteWarmerResponse> deleteWarmer(Closure c) {
+        DeleteWarmerRequest request = new DeleteWarmerRequest()
+        c.setDelegate request
+        c.resolveStrategy = gClient.resolveStrategy
+        c.call()
+        deleteWarmer(request)
+    }
+
+    GActionFuture<DeleteWarmerResponse> deleteWarmer(DeleteWarmerRequest request) {
+        GActionFuture<DeleteWarmerResponse> future = new GActionFuture<DeleteWarmerResponse>(internalClient.threadPool(), request)
+        indicesAdminClient.deleteWarmer(request, future)
         return future
     }
 }

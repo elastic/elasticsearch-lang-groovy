@@ -20,31 +20,31 @@
 package org.elasticsearch.groovy.client
 
 import org.elasticsearch.action.ActionListener
+import org.elasticsearch.action.ActionRequestBuilder
 import org.elasticsearch.action.ListenableActionFuture
 import org.elasticsearch.action.count.CountRequest
+import org.elasticsearch.action.count.CountRequestBuilder
 import org.elasticsearch.action.count.CountResponse
 import org.elasticsearch.action.delete.DeleteRequest
+import org.elasticsearch.action.delete.DeleteRequestBuilder
 import org.elasticsearch.action.delete.DeleteResponse
 import org.elasticsearch.action.deletebyquery.DeleteByQueryRequest
+import org.elasticsearch.action.deletebyquery.DeleteByQueryRequestBuilder
 import org.elasticsearch.action.deletebyquery.DeleteByQueryResponse
 import org.elasticsearch.action.get.GetRequest
+import org.elasticsearch.action.get.GetRequestBuilder
 import org.elasticsearch.action.get.GetResponse
 import org.elasticsearch.action.index.IndexRequest
+import org.elasticsearch.action.index.IndexRequestBuilder
 import org.elasticsearch.action.index.IndexResponse
 import org.elasticsearch.action.mlt.MoreLikeThisRequest
 import org.elasticsearch.action.percolate.PercolateRequest
+import org.elasticsearch.action.percolate.PercolateRequestBuilder
 import org.elasticsearch.action.percolate.PercolateResponse
 import org.elasticsearch.action.search.SearchRequest
+import org.elasticsearch.action.search.SearchRequestBuilder
 import org.elasticsearch.action.search.SearchResponse
 import org.elasticsearch.client.Client
-import org.elasticsearch.action.count.CountRequestBuilder
-import org.elasticsearch.action.delete.DeleteRequestBuilder
-import org.elasticsearch.action.deletebyquery.DeleteByQueryRequestBuilder
-import org.elasticsearch.action.get.GetRequestBuilder
-import org.elasticsearch.action.index.IndexRequestBuilder
-import org.elasticsearch.action.percolate.PercolateRequestBuilder
-import org.elasticsearch.action.search.SearchRequestBuilder
-import org.elasticsearch.action.support.BaseRequestBuilder
 import org.elasticsearch.client.internal.InternalClient
 import org.elasticsearch.common.xcontent.XContentType
 import org.elasticsearch.groovy.client.action.GActionFuture
@@ -56,7 +56,7 @@ import org.elasticsearch.groovy.common.xcontent.GXContentBuilder
 class GClient {
 
     static {
-        BaseRequestBuilder.metaClass.gexecute = {
+        ActionRequestBuilder.metaClass.gexecute = {
             ListenableActionFuture future = delegate.execute()
             return new GActionFuture(future)
         }

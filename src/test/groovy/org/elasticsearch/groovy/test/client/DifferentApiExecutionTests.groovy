@@ -88,7 +88,7 @@ class DifferentApiExecutionTests {
         assertThat getR.response.index, equalTo('test')
         assertThat getR.response.type, equalTo('type1')
         assertThat getR.response.id, equalTo('1')
-        assertThat getR.response.sourceAsString(), equalTo('{"test":"value","complex":{"value1":"value1","value2":"value2"}}')
+        assertThat getR.response.sourceAsString, equalTo('{"test":"value","complex":{"value1":"value1","value2":"value2"}}')
         assertThat getR.response.source.test, equalTo('value')
         assertThat getR.response.source.complex.value1, equalTo('value1')
 

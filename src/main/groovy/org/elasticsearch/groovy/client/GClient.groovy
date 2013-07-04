@@ -351,6 +351,10 @@ class GClient {
         return future
     }
 
+    UpdateRequestBuilder prepareUpdate(String index, String type, String id) {
+        client.prepareUpdate(index, type, id)
+    }
+
     void moreLikeThis(MoreLikeThisRequest request, ActionListener<SearchResponse> listener) {
         client.moreLikeThis(request, listener)
     }

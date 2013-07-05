@@ -65,9 +65,9 @@ class GXContentBuilder {
         return builder?.bytes().toBytes()
     }
 
-    private buildRoot(Closure c) {
+    private buildRoot(Closure c, int closureResolveStrategy = rootResolveStrategy) {
         c.delegate = this
-        c.resolveStrategy = rootResolveStrategy
+        c.resolveStrategy = closureResolveStrategy
         root = [:]
         current = root
         def returnValue = c.call()
@@ -168,8 +168,7 @@ class GXContentBuilder {
                     def callable = it
                     final GXContentBuilder localBuilder = new GXContentBuilder()
                     callable.delegate = localBuilder
-                    callable.resolveStrategy = Closure.DELEGATE_FIRST
-                    final Map nestedObject = localBuilder.buildRoot(callable)
+                    final Map nestedObject = localBuilder.buildRoot(callable, Closure.DELEGATE_FIRST)
                     return nestedObject
                 }
                 else {

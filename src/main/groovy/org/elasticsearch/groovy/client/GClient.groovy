@@ -44,6 +44,7 @@ import org.elasticsearch.action.percolate.PercolateResponse
 import org.elasticsearch.action.search.SearchRequest
 import org.elasticsearch.action.search.SearchRequestBuilder
 import org.elasticsearch.action.search.SearchResponse
+import org.elasticsearch.action.update.UpdateRequestBuilder
 import org.elasticsearch.client.Client
 import org.elasticsearch.client.internal.InternalClient
 import org.elasticsearch.common.xcontent.XContentType

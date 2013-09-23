@@ -165,6 +165,19 @@ class GClient {
         PercolateRequestBuilder.metaClass.source = {Closure c ->
             delegate.setSource(new GXContentBuilder().buildAsBytes(c, indexContentType))
         }
+
+        UpdateRequest.metaClass.setSource = {Closure c ->
+            delegate.source(new GXContentBuilder().buildAsBytes(c, contentType))
+        }
+        UpdateRequest.metaClass.source = {Closure c ->
+            delegate.source(new GXContentBuilder().buildAsBytes(c, contentType))
+        }
+        UpdateRequestBuilder.metaClass.setSource = {Closure c ->
+            delegate.setSource(new GXContentBuilder().buildAsBytes(c, contentType))
+        }
+        UpdateRequestBuilder.metaClass.source = {Closure c ->
+            delegate.setSource(new GXContentBuilder().buildAsBytes(c, contentType))
+        }
     }
 
     public static XContentType contentType = XContentType.SMILE
@@ -360,6 +373,20 @@ class GClient {
 
     UpdateRequestBuilder prepareUpdate(String index, String type, String id) {
         client.prepareUpdate(index, type, id)
+    }
+
+    GActionFuture<UpdateResponse> update(Closure c) {
+        UpdateRequest request = new UpdateRequest()
+        c.resolveStrategy = resolveStrategy
+        c.setDelegate request
+        c.call()
+        update(request)
+    }
+
+    GActionFuture<UpdateResponse> update(UpdateRequest request) {
+        GActionFuture<UpdateResponse> future = new GActionFuture<UpdateResponse>(internalClient.threadPool(), request)
+        client.update(request, future)
+        return future
     }
 
     void update(UpdateRequest request, ActionListener<UpdateResponse> listener) {

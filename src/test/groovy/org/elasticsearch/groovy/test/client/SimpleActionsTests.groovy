@@ -141,6 +141,44 @@ class SimpleActionsTests {
         assertThat search.response.hits.totalHits, equalTo(1l)
         assertThat search.response.hits[0].source.test, equalTo('value')
 
+
+        def updateR = node.client.update {
+            index 'test'
+            type 'type1'
+            id '1'
+            source {
+                doc {
+                    test = "new value"
+                }
+            }
+        }
+        assertThat updateR.response.index, equalTo('test')
+        assertThat updateR.response.type, equalTo('type1')
+        assertThat updateR.response.id, equalTo('1')
+
+        get = node.client.get {
+            index 'test'
+            type 'type1'
+            id '1'
+        }
+        assertThat get.response.source['test'], equalTo('new value')
+
+        refresh = node.client.admin.indices.refresh {}
+        assertThat refresh.response.failedShards, equalTo(0)
+
+        search = node.client.search {
+            indices 'test'
+            types 'type1'
+            source {
+                query {
+                    match(test: 'new value')
+                }
+            }
+        }
+        assertThat search.response.failedShards, equalTo(0)
+        assertThat search.response.hits.totalHits, equalTo(1l)
+        assertThat search.response.hits[0].source.test, equalTo('new value')
+
         def deleteByQuery = node.client.deleteByQuery {
             indices 'test'
             query {

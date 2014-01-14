@@ -1,34 +1,26 @@
-Groovy lang Plugin for ElasticSearch
+Groovy lang Plugin for Elasticsearch
 ==================================
 
 The Groovy language plugin allows to have `groovy` as the language of scripts to execute.
 
 In order to install the plugin, simply run: `bin/plugin -install elasticsearch/elasticsearch-lang-groovy/1.5.0`.
 
-    -----------------------------------------------
-    |      Groovy Plugin       | ElasticSearch    |
-    -----------------------------------------------
-    | 1.6.0-SNAPSHOT (master)  | 0.90 -> master   |
-    -----------------------------------------------
-    | 1.5.0                    | 0.90 -> master   |
-    -----------------------------------------------
-    | 1.4.0                    | 0.90 -> master   |
-    -----------------------------------------------
-    | 1.3.0                    | 0.20             |
-    -----------------------------------------------
-    | 1.2.0                    | 0.20             |
-    -----------------------------------------------
-    | 1.1.0                    | 0.19             |
-    -----------------------------------------------
-    | 1.0.0                    | 0.18             |
-    -----------------------------------------------
+|     Groovy Lang Plugin      |    elasticsearch    |  groovy  | Release date |
+|-----------------------------|---------------------|----------|:------------:|
+| 1.6.0-SNAPSHOT (master)     | 0.90                |  2.1.0   |              |
+| 1.5.0                       | 0.90                |  2.1.0   |  2013-07-07  |
+| 1.4.0                       | 0.90                |  2.1.0   |  2013-02-26  |
+| 1.3.0                       | 0.20                |  2.1.0   |  2013-02-02  |
+| 1.2.0                       | 0.20                |  1.8.4   |  2013-01-02  |
+| 1.1.0                       | 0.19 -> 0.20        |  1.8.4   |  2012-02-07  |
+| 1.0.0                       | 0.18                |  1.8.4   |  2011-12-05  |
 
 License
 -------
 
     This software is licensed under the Apache 2 license, quoted below.
 
-    Copyright 2009-2013 Shay Banon and ElasticSearch <http://www.elasticsearch.org>
+    Copyright 2009-2014 Elasticsearch <http://www.elasticsearch.org>
 
     Licensed under the Apache License, Version 2.0 (the "License"); you may not
     use this file except in compliance with the License. You may obtain a copy of

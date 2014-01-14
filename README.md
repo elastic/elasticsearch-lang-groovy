@@ -7,7 +7,7 @@ In order to install the plugin, simply run: `bin/plugin -install elasticsearch/e
 
 |     Groovy Lang Plugin      |    elasticsearch    |  groovy  | Release date |
 |-----------------------------|---------------------|----------|:------------:|
-| 1.6.0-SNAPSHOT (master)     | 0.90                |  2.1.0   |              |
+| 1.6.0-SNAPSHOT (master)     | 0.90                |  2.2.1   |              |
 | 1.5.0                       | 0.90                |  2.1.0   |  2013-07-07  |
 | 1.4.0                       | 0.90                |  2.1.0   |  2013-02-26  |
 | 1.3.0                       | 0.20                |  2.1.0   |  2013-02-02  |

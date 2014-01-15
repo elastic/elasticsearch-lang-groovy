@@ -21,10 +21,10 @@ package org.elasticsearch.groovy.test.client
 
 import org.elasticsearch.groovy.node.GNode
 import org.elasticsearch.groovy.node.GNodeBuilder
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
 
-import org.testng.annotations.AfterMethod
-import org.testng.annotations.BeforeMethod
-import org.testng.annotations.Test
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.equalTo
 
@@ -36,8 +36,8 @@ class BuilderActionsTests {
 
     def GNode node
 
-    @BeforeMethod
-    protected void setUp() {
+    @Before
+    public void startNode() {
         GNodeBuilder nodeBuilder = new GNodeBuilder()
         nodeBuilder.settings {
             node {
@@ -51,8 +51,8 @@ class BuilderActionsTests {
         node = nodeBuilder.node()
     }
 
-    @AfterMethod
-    protected void tearDown() {
+    @After
+    public void closeNode() {
         node.close()
     }
 

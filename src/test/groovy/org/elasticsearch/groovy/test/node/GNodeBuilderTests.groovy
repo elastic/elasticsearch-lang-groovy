@@ -21,7 +21,7 @@ package org.elasticsearch.groovy.test.node
 
 import org.elasticsearch.groovy.node.GNode
 import org.elasticsearch.groovy.node.GNodeBuilder
-import org.testng.annotations.Test
+import org.junit.Test
 
 import static org.elasticsearch.groovy.node.GNodeBuilder.nodeBuilder
 

@@ -19,15 +19,16 @@
 
 package org.elasticsearch.groovy.test.client
 
-import org.elasticsearch.groovy.node.GNode
-import org.elasticsearch.groovy.node.GNodeBuilder
-
-import java.util.concurrent.CountDownLatch
 import org.elasticsearch.action.index.IndexRequest
 import org.elasticsearch.action.index.IndexResponse
-import org.testng.annotations.AfterMethod
-import org.testng.annotations.BeforeMethod
-import org.testng.annotations.Test
+import org.elasticsearch.groovy.node.GNode
+import org.elasticsearch.groovy.node.GNodeBuilder
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
+
+import java.util.concurrent.CountDownLatch
+
 import static org.elasticsearch.client.Requests.indexRequest
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.equalTo
@@ -39,8 +40,8 @@ class DifferentApiExecutionTests {
 
     def GNode node
 
-    @BeforeMethod
-    protected void setUp() {
+    @Before
+    public void startNode() {
         GNodeBuilder nodeBuilder = new GNodeBuilder()
         nodeBuilder.settings {
             node {
@@ -54,8 +55,8 @@ class DifferentApiExecutionTests {
         node = nodeBuilder.node()
     }
 
-    @AfterMethod
-    protected void tearDown() {
+    @After
+    public void closeNode() {
         node.close()
     }
 

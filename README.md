@@ -3,11 +3,12 @@ Groovy lang Plugin for Elasticsearch
 
 The Groovy language plugin allows to have `groovy` as the language of scripts to execute.
 
-In order to install the plugin, simply run: `bin/plugin -install elasticsearch/elasticsearch-lang-groovy/1.5.0`.
+In order to install the plugin, simply run: `bin/plugin -install elasticsearch/elasticsearch-lang-groovy/2.0.0.RC1`.
 
 |     Groovy Lang Plugin      |    elasticsearch    |  groovy  | Release date |
 |-----------------------------|---------------------|----------|:------------:|
-| 2.0.0.RC1-SNAPSHOT (master) | 1.0.0.RC1 -> master |  2.2.1   |              |
+| 2.0.0-SNAPSHOT (master)     | 1.0.0.RC1 -> master |  2.2.1   |              |
+| 2.0.0.RC1                   | 1.0.0.RC1 -> master |  2.2.1   |  2014-01-16  |
 | 1.6.0-SNAPSHOT (1.x)        | 0.90                |  2.2.1   |              |
 | 1.5.0                       | 0.90                |  2.1.0   |  2013-07-07  |
 | 1.4.0                       | 0.90                |  2.1.0   |  2013-02-26  |

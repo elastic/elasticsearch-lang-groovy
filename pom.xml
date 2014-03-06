@@ -2,13 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <name>elasticsearch-lang-groovy</name>
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch-lang-groovy</artifactId>
     <version>1.6.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <description>Groovy lang plugin for ElasticSearch</description>
+    <name>Elasticsearch Groovy language plugin</name>
+    <description>The Groovy language plugin allows to have groovy as the language of scripts to execute.</description>
+    <url>https://github.com/elasticsearch/elasticsearch-lang-groovy/</url>
     <inceptionYear>2009</inceptionYear>
     <licenses>
         <license>

@@ -36,12 +36,12 @@ curl -XPUT "http://localhost:9200/test/doc/2?refresh" -d '{
   "num": 2.0
 }'
 
-curl -XGET "http://localhost:9200/test/_search?pretty" -d '
+curl -XGET "http://localhost:9200/test/_search" -d'
 {
   "query": {
     "function_score": {
       "script_score": {
-        "script": "doc[\"num\"].value",
+        "script": "Math.pow(doc[\"num\"].value, 2)",
         "lang": "groovy"
       }
     }

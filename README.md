@@ -15,6 +15,130 @@ In order to install the plugin, simply run: `bin/plugin -install elasticsearch/e
 | 2.0.0                       | 1.0.0.RC1 -> master |  2.2.1   |  2014-03-06  |
 | 2.0.0.RC1                   | 1.0.0.RC1 -> master |  2.2.1   |  2014-01-16  |
 
+Using groovy with function_score
+--------------------------------
+
+Let's say you want to use `function_score` API using `javascript`. Here is
+a way of doing it:
+
+```sh
+curl -XDELETE "http://localhost:9200/test"
+
+curl -XPUT "http://localhost:9200/test/doc/1" -d '{
+  "num": 1.0
+}'
+
+curl -XPUT "http://localhost:9200/test/doc/2?refresh" -d '{
+  "num": 2.0
+}'
+
+curl -XGET "http://localhost:9200/test/_search?pretty" -d '
+{
+  "query": {
+    "function_score": {
+      "script_score": {
+        "script": "doc[\"num\"].value",
+        "lang": "groovy"
+      }
+    }
+  }
+}'
+```
+
+gives
+
+```javascript
+{
+   // ...
+   "hits": {
+      "total": 2,
+      "max_score": 4,
+      "hits": [
+         {
+            // ...
+            "_score": 4
+         },
+         {
+            // ...
+            "_score": 1
+         }
+      ]
+   }
+}
+```
+
+Using groovy with script_fields
+-------------------------------
+
+```sh
+curl -XDELETE "http://localhost:9200/test"
+
+curl -XPUT "http://localhost:9200/test/doc/1?refresh" -d'
+{
+  "obj1": {
+   "test": "something"
+  },
+  "obj2": {
+    "arr2": [ "arr_value1", "arr_value2" ]
+  }
+}'
+
+curl -XGET "http://localhost:9200/test/_search" -d'
+{
+  "script_fields": {
+    "s_obj1": {
+      "script": "_source.obj1", "lang": "groovy"
+    },
+    "s_obj1_test": {
+      "script": "_source.obj1.test", "lang": "groovy"
+    },
+    "s_obj2": {
+      "script": "_source.obj2", "lang": "groovy"
+    },
+    "s_obj2_arr2": {
+      "script": "_source.obj2.arr2", "lang": "groovy"
+    }
+  }
+}'
+```
+
+gives
+
+```javascript
+{
+  // ...
+  "hits": [
+     {
+        // ...
+        "fields": {
+           "s_obj2_arr2": [
+              [
+                 "arr_value1",
+                 "arr_value2"
+              ]
+           ],
+           "s_obj1_test": [
+              "something"
+           ],
+           "s_obj2": [
+              {
+                 "arr2": [
+                    "arr_value1",
+                    "arr_value2"
+                 ]
+              }
+           ],
+           "s_obj1": [
+              {
+                 "test": "something"
+              }
+           ]
+        }
+     }
+  ]
+}
+```
+
 License
 -------
 

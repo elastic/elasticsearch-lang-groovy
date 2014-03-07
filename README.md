@@ -18,7 +18,7 @@ In order to install the plugin, simply run: `bin/plugin -install elasticsearch/e
 Using groovy with function_score
 --------------------------------
 
-Let's say you want to use `function_score` API using `javascript`. Here is
+Let's say you want to use `function_score` API using `groovy`. Here is
 a way of doing it:
 
 ```sh

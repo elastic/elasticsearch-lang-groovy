@@ -46,7 +46,6 @@ public class GroovyScriptSearchTests extends ElasticsearchIntegrationTest {
 
     @Test
     public void testGroovyScriptFilter() throws Exception {
-        wipeIndices("test");
         createIndex("test");
         index("test", "type1", "1", jsonBuilder().startObject().field("test", "value beck").field("num1", 1.0f).endObject());
         flush();
@@ -98,7 +97,6 @@ public class GroovyScriptSearchTests extends ElasticsearchIntegrationTest {
     @SuppressWarnings({"unchecked"})
     @Test
     public void testScriptFieldUsingSource() throws Exception {
-        wipeIndices("test");
         createIndex("test");
         index("test", "type1", "1",
                 jsonBuilder().startObject()
@@ -133,7 +131,6 @@ public class GroovyScriptSearchTests extends ElasticsearchIntegrationTest {
 
     @Test
     public void testCustomScriptBoost() throws Exception {
-        wipeIndices("test");
         createIndex("test");
         index("test", "type1", "1", jsonBuilder().startObject().field("test", "value beck").field("num1", 1.0f).endObject());
         index("test", "type1", "2", jsonBuilder().startObject().field("test", "value beck").field("num1", 2.0f).endObject());
@@ -233,7 +230,6 @@ public class GroovyScriptSearchTests extends ElasticsearchIntegrationTest {
 
     @Test
     public void testGroovyEmptyParameters() throws Exception {
-        wipeIndices("test");
         createIndex("test");
         index("test", "type1", "1", jsonBuilder().startObject().field("myfield", "foo").endObject());
         refresh();

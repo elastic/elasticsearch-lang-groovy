@@ -67,6 +67,11 @@ public class GroovyScriptEngineService extends AbstractComponent implements Scri
     }
 
     @Override
+    public boolean sandboxed() {
+        return false;
+    }
+
+    @Override
     public Object compile(String script) {
         return loader.parseClass(script, generateScriptName());
     }

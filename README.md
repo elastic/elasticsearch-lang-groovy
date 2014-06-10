@@ -3,7 +3,7 @@ Groovy lang Plugin for Elasticsearch
 
 The Groovy language plugin allows to have `groovy` as the language of scripts to execute.
 
-In order to install the plugin, simply run: `bin/plugin -install elasticsearch/elasticsearch-lang-groovy/2.0.0`.
+In order to install the plugin, simply run: `bin/plugin -install elasticsearch/elasticsearch-lang-groovy/2.2.0`.
 
 * For master elasticsearch versions, look at [master branch](https://github.com/elasticsearch/elasticsearch-lang-groovy/tree/master).
 * For 1.2.x elasticsearch versions, look at [es-1.2 branch](https://github.com/elasticsearch/elasticsearch-lang-groovy/tree/es-1.2).
@@ -13,11 +13,11 @@ In order to install the plugin, simply run: `bin/plugin -install elasticsearch/e
 
 |     Groovy Lang Plugin      |    elasticsearch    |  groovy  | Release date |
 |-----------------------------|---------------------|----------|:------------:|
-| 2.2.0-SNAPSHOT              | 1.2.0 -> 1.2        |  2.2.1   |  XXXX-XX-XX  |
+| 2.2.0                       | 1.2.0 -> 1.2        |  2.2.1   |  2014-06-10  |
 
 Please read documentation relative to the version you are using:
 
-* [2.2.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-groovy/blob/es-1.2/README.md)
+* [2.2.0](https://github.com/elasticsearch/elasticsearch-lang-groovy/blob/v2.2.0/README.md)
 
 Using groovy with function_score
 --------------------------------

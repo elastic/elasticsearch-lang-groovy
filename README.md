@@ -1,3 +1,5 @@
+** Important **: This plugin is not needed anymore from elasticsearch 1.4 and is not maintained.
+
 Groovy lang Plugin for Elasticsearch
 ==================================
 
